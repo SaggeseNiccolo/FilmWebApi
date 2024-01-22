@@ -19,7 +19,9 @@ public class MovieRepository
 
     public async Task<Movie> GetMovie(int id)
     {
-        return await _context.Movies.FindAsync(id);
+        var movie = await _context.Movies.FindAsync(id) ?? throw new Exception("Movie not found");
+        
+        return movie;
     }
 
     public async Task<Movie> AddMovie(Movie movie)
@@ -29,17 +31,14 @@ public class MovieRepository
         return movie;
     }
 
-    public async Task<Movie> UpdateMovie(Movie movie)
-    {
-        _context.Entry(movie).State = EntityState.Modified;
-        await _context.SaveChangesAsync();
-        return movie;
-    }
-
     public async Task DeleteMovie(int id)
     {
         var movieToDelete = await _context.Movies.FindAsync(id);
-        _context.Movies.Remove(movieToDelete);
-        await _context.SaveChangesAsync();
+
+        if (movieToDelete != null)
+        {
+            _context.Movies.Remove(movieToDelete);
+            await _context.SaveChangesAsync();
+        }
     }
 }
