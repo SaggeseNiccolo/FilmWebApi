@@ -6,6 +6,6 @@
         public string Name { get; set; } = null!;
         public string LastName { get; set; } = null!;
         public DateTime BirthDate { get; set; }
-        public list
+        public ICollection<Movie> Movies { get; set; } = [];
     }
 }
