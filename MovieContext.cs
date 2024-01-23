@@ -19,26 +19,4 @@ public class MovieContext : DbContext
     {
         optionsBuilder.UseSqlServer(connectionString);
     }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<Movie>()
-            .HasOne(m => m.Director)
-            .WithMany(d => d.Movies)
-            .HasForeignKey(m => m.DirectorId);
-            
-        modelBuilder.Entity<Movie>()
-            .HasOne(m => m.Production)
-            .WithMany(p => p.Movies)
-            .HasForeignKey(m => m.ProductionId)
-            .OnDelete(DeleteBehavior.Cascade);
-
-        modelBuilder.Entity<Movie>()
-            .HasMany(m => m.Actors)
-            .WithMany(a => a.Movies);
-
-        modelBuilder.Entity<Movie>()
-            .HasMany(m => m.Categories)
-            .WithMany(c => c.Movies);
-    }
 }

@@ -4,6 +4,7 @@ using FilmWebApi;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilmWebApi.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    partial class MovieContextModelSnapshot : ModelSnapshot
+    [Migration("20240123094420_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -121,7 +124,7 @@ namespace FilmWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("DirectorIdId")
+                    b.Property<Guid>("DirectorId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Duration")
@@ -131,7 +134,7 @@ namespace FilmWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ProductionIdId")
+                    b.Property<Guid>("ProductionId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Released")
@@ -145,10 +148,6 @@ namespace FilmWebApi.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DirectorIdId");
-
-                    b.HasIndex("ProductionIdId");
 
                     b.ToTable("Movies");
                 });
@@ -196,25 +195,6 @@ namespace FilmWebApi.Migrations
                         .HasForeignKey("MoviesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("FilmWebApi.Entities.Movie", b =>
-                {
-                    b.HasOne("FilmWebApi.Entities.Director", "DirectorId")
-                        .WithMany()
-                        .HasForeignKey("DirectorIdId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FilmWebApi.Entities.Production", "ProductionId")
-                        .WithMany()
-                        .HasForeignKey("ProductionIdId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DirectorId");
-
-                    b.Navigation("ProductionId");
                 });
 #pragma warning restore 612, 618
         }
