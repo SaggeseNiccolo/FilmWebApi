@@ -7,6 +7,8 @@ public class Movie
     public int Duration { get; set; }
     public DateTime Released { get; set;}
     public int Year { get; set; }
+    public required Director Director { get; set; }
+    public required Production Production { get; set; }
     public string Country { get; set; } = null!;
     public string Language { get; set; } = null!;
     public Guid DirectorId { get; set; }
