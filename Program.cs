@@ -5,51 +5,45 @@ namespace FilmWebApi;
 
 public class Program
 {
-	public static void Main(string[] args)
-	{
-		var builder = WebApplication.CreateBuilder(args);
+    public static void Main(string[] args)
+    {
 
-		// Add services to the container.
-		builder.Services.AddControllers();
-		builder.Services.AddSwaggerGen(c =>
-		{
-			c.SwaggerDoc("v1", new() { Title = "FilmWebApi", Version = "v1" });
-		});
+        var builder = WebApplication.CreateBuilder(args);
 
-		builder.Services.AddDbContext<MovieContext>(options =>
-		{
-			options.UseSqlServer(builder.Configuration.GetConnectionString("MovieContext"));
-		});
+        // Add services to the container.
+        builder.Services.AddControllers();
+        builder.Services.AddSwaggerGen(c =>
+        {
+            c.SwaggerDoc("v1", new() { Title = "FilmWebApi", Version = "v1" });
+        });
 
-		var app = builder.Build();
+        builder.Services.AddDbContext<MovieContext>(options =>
+        {
+            options.UseSqlServer(builder.Configuration.GetConnectionString("MovieContext"));
+        });
 
-		// Configure the HTTP request pipeline.
+        var app = builder.Build();
 
-		if (app.Environment.IsDevelopment())
-		{
-			app.UseDeveloperExceptionPage();
-			app.UseSwagger();
-			app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FilmWebApi v1"));
-		}
+        // Configure the HTTP request pipeline.
 
-		app.UseHttpsRedirection();
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FilmWebApi v1"));
+        }
 
-		app.UseAuthorization();
+        app.UseHttpsRedirection();
 
-		app.MapControllers();
+        app.UseAuthorization();
 
-		PopulateDatabase();
+        app.MapControllers();
 
-		app.Run();
-	}
+        app.Run();
 
-	private static void PopulateDatabase()
-	{
-		try
-		{
-			using var db = new MovieContext();
-			db.Database.EnsureDeleted();
-			db.Database.EnsureCreated();
+        // using var db = new MovieContext();
+        // db.Database.EnsureDeleted();
+        // db.Database.EnsureCreated();
 
         // var actors = new List<Actor>
         //     {
