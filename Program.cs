@@ -46,11 +46,13 @@ public class Program
 
     private static void Populate()
     {
-        var db = new MovieContext();
-        db.Database.EnsureDeleted();
-        db.Database.EnsureCreated();
+        try
+        {
+            var db = new MovieContext();
+            db.Database.EnsureDeleted();
+            db.Database.EnsureCreated();
 
-        var actors = new List<Actor>
+            var actors = new List<Actor>
             {
                 new Actor
                 {
@@ -168,7 +170,7 @@ public class Program
                 }
             };
 
-        var directors = new List<Director>
+            var directors = new List<Director>
             {
                 new Director
                 {
@@ -292,7 +294,7 @@ public class Program
                 }
             };
 
-        var categories = new List<Category>
+            var categories = new List<Category>
             {
                 new Category { Name = "Drama" },
                 new Category { Name = "Crime" },
@@ -317,7 +319,7 @@ public class Program
                 new Category { Name = "Documentary" }
             };
 
-        var productions = new List<Production>
+            var productions = new List<Production>
             {
                 new Production { Name = "20th Century Fox" },
                 new Production { Name = "Warner Bros." },
@@ -360,7 +362,7 @@ public class Program
                 new Production { Name = "Columbia Pictures Corporation" }
             };
 
-        var movies = new List<Movie>
+            var movies = new List<Movie>
             {
                 new Movie
                 {
@@ -436,11 +438,19 @@ public class Program
                 }
             };
 
-        db.Actors.AddRange(actors);
-        db.Directors.AddRange(directors);
-        db.Categories.AddRange(categories);
-        db.Productions.AddRange(productions);
-        db.Movies.AddRange(movies);
-        db.SaveChanges();
+            db.Actors.AddRange(actors);
+            db.Directors.AddRange(directors);
+            db.Categories.AddRange(categories);
+            db.Productions.AddRange(productions);
+            db.Movies.AddRange(movies);
+
+            db.SaveChanges();
+
+            Console.WriteLine("Database populated");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
     }
 }

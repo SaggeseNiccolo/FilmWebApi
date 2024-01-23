@@ -121,7 +121,7 @@ namespace FilmWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("DirectorIdId")
+                    b.Property<Guid>("DirectorId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Duration")
@@ -131,7 +131,7 @@ namespace FilmWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ProductionIdId")
+                    b.Property<Guid>("ProductionId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Released")
@@ -146,9 +146,9 @@ namespace FilmWebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DirectorIdId");
+                    b.HasIndex("DirectorId");
 
-                    b.HasIndex("ProductionIdId");
+                    b.HasIndex("ProductionId");
 
                     b.ToTable("Movies");
                 });
@@ -200,21 +200,21 @@ namespace FilmWebApi.Migrations
 
             modelBuilder.Entity("FilmWebApi.Entities.Movie", b =>
                 {
-                    b.HasOne("FilmWebApi.Entities.Director", "DirectorId")
+                    b.HasOne("FilmWebApi.Entities.Director", "Director")
                         .WithMany()
-                        .HasForeignKey("DirectorIdId")
+                        .HasForeignKey("DirectorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FilmWebApi.Entities.Production", "ProductionId")
+                    b.HasOne("FilmWebApi.Entities.Production", "Production")
                         .WithMany()
-                        .HasForeignKey("ProductionIdId")
+                        .HasForeignKey("ProductionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("DirectorId");
+                    b.Navigation("Director");
 
-                    b.Navigation("ProductionId");
+                    b.Navigation("Production");
                 });
 #pragma warning restore 612, 618
         }

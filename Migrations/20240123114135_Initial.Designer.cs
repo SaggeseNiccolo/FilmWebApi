@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilmWebApi.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    [Migration("20240123094420_Initial")]
+    [Migration("20240123114135_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -149,6 +149,10 @@ namespace FilmWebApi.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DirectorId");
+
+                    b.HasIndex("ProductionId");
+
                     b.ToTable("Movies");
                 });
 
@@ -195,6 +199,25 @@ namespace FilmWebApi.Migrations
                         .HasForeignKey("MoviesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("FilmWebApi.Entities.Movie", b =>
+                {
+                    b.HasOne("FilmWebApi.Entities.Director", "Director")
+                        .WithMany()
+                        .HasForeignKey("DirectorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FilmWebApi.Entities.Production", "Production")
+                        .WithMany()
+                        .HasForeignKey("ProductionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Director");
+
+                    b.Navigation("Production");
                 });
 #pragma warning restore 612, 618
         }

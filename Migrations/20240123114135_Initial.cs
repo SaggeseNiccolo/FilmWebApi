@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FilmWebApi.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -72,23 +72,23 @@ namespace FilmWebApi.Migrations
                     Duration = table.Column<int>(type: "int", nullable: false),
                     Released = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Year = table.Column<int>(type: "int", nullable: false),
+                    DirectorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProductionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Language = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DirectorIdId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProductionIdId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Language = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Movies", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Movies_Directors_DirectorIdId",
-                        column: x => x.DirectorIdId,
+                        name: "FK_Movies_Directors_DirectorId",
+                        column: x => x.DirectorId,
                         principalTable: "Directors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Movies_Productions_ProductionIdId",
-                        column: x => x.ProductionIdId,
+                        name: "FK_Movies_Productions_ProductionId",
+                        column: x => x.ProductionId,
                         principalTable: "Productions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -153,14 +153,14 @@ namespace FilmWebApi.Migrations
                 column: "MoviesId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Movies_DirectorIdId",
+                name: "IX_Movies_DirectorId",
                 table: "Movies",
-                column: "DirectorIdId");
+                column: "DirectorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Movies_ProductionIdId",
+                name: "IX_Movies_ProductionId",
                 table: "Movies",
-                column: "ProductionIdId");
+                column: "ProductionId");
         }
 
         /// <inheritdoc />
