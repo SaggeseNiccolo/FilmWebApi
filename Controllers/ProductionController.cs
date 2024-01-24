@@ -8,9 +8,9 @@ namespace FilmWebApi.Controllers;
 [ApiController]
 public class ProductionController : ControllerBase
 {
-    private readonly ProductionService _productionService;
+    private readonly IProductionService _productionService;
 
-    public ProductionController(ProductionService productionService)
+    public ProductionController(IProductionService productionService)
     {
         _productionService = productionService;
     }

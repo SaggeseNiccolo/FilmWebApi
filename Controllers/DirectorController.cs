@@ -8,9 +8,9 @@ namespace FilmWebApi.Controllers;
 [ApiController]
 public class DirectorController : ControllerBase
 {
-    private readonly DirectorService _directorService;
+    private readonly IDirectorService _directorService;
 
-    public DirectorController(DirectorService directorService)
+    public DirectorController(IDirectorService directorService)
     {
         _directorService = directorService;
     }

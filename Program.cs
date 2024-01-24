@@ -18,10 +18,6 @@ public class Program
         {
             c.SwaggerDoc("v1", new() { Title = "FilmWebApi", Version = "v1" });
         });
-        builder.Services.AddSwaggerGen(c =>
-        {
-            c.SwaggerDoc("v2", new() { Title = "FilmWebApi", Version = "v2" });
-        });
 
         builder.Services.AddScoped<IActorService, ActorService>();
         builder.Services.AddScoped<ICategoryService, CategoryService>();
@@ -185,6 +181,144 @@ public class Program
                     Name = "Jane",
                     LastName = "Levy",
                     BirthDate = new DateTime(1989, 12, 29)
+                },
+                new Actor
+                {
+                    Name = "Stephen",
+                    LastName = "Lang",
+                    BirthDate = new DateTime(1952, 7, 11)
+                },
+                new Actor
+                {
+                    Name = "Dylan",
+                    LastName = "O'Brien",
+                    BirthDate = new DateTime(1991, 8, 26)
+                },
+                new Actor
+                {
+                    Name = "Aml",
+                    LastName = "Ameen",
+                    BirthDate = new DateTime(1985, 7, 30)
+                },
+                new Actor
+                {
+                    Name = "Ki",
+                    LastName = "Hong Lee",
+                    BirthDate = new DateTime(1986, 9, 30)
+                },
+                new Actor
+                {
+                    Name = "Kaya",
+                    LastName = "Scodelario",
+                    BirthDate = new DateTime(1992, 3, 13)
+                },
+                new Actor
+                {
+                    Name = "Thomas",
+                    LastName = "Brodie",
+                    BirthDate = new DateTime(1990, 8, 8)
+                },
+                new Actor
+                {
+                    Name = "Will",
+                    LastName = "Poulter",
+                    BirthDate = new DateTime(1993, 1, 28)
+                },
+                new Actor
+                {
+                    Name = "Patricia",
+                    LastName = "Clarkson",
+                    BirthDate = new DateTime(1959, 12, 29)
+                },
+                new Actor
+                {
+                    Name = "Katherine",
+                    LastName = "McNamara",
+                    BirthDate = new DateTime(1995, 11, 22)
+                },
+                new Actor
+                {
+                    Name = "Thomas",
+                    LastName = "Sangster",
+                    BirthDate = new DateTime(1990, 5, 16)
+                },
+                new Actor
+                {
+                    Name = "Jacob",
+                    LastName = "Lofland",
+                    BirthDate = new DateTime(1996, 7, 30)
+                },
+                new Actor
+                {
+                    Name = "Rosa",
+                    LastName = "Salazar",
+                    BirthDate = new DateTime(1985, 7, 16)
+                },
+                new Actor
+                {
+                    Name = "Giancarlo",
+                    LastName = "Esposito",
+                    BirthDate = new DateTime(1958, 4, 26)
+                },
+                new Actor
+                {
+                    Name = "Aidan",
+                    LastName = "Gillen",
+                    BirthDate = new DateTime(1968, 4, 24)
+                },
+                new Actor
+                {
+                    Name = "Barry",
+                    LastName = "Pepper",
+                    BirthDate = new DateTime(1970, 4, 4)
+                },
+                new Actor
+                {
+                    Name = "Lili",
+                    LastName = "Taylor",
+                    BirthDate = new DateTime(1967, 2, 20)
+                },
+                new Actor
+                {
+                    Name = "Patricia",
+                    LastName = "Clarkson",
+                    BirthDate = new DateTime(1959, 12, 29)
+                },
+                new Actor
+                {
+                    Name = "Thomas",
+                    LastName = "Sangster",
+                    BirthDate = new DateTime(1990, 5, 16)
+                },
+                new Actor
+                {
+                    Name = "Jacob",
+                    LastName = "Lofland",
+                    BirthDate = new DateTime(1996, 7, 30)
+                },
+                new Actor
+                {
+                    Name = "Rosa",
+                    LastName = "Salazar",
+                    BirthDate = new DateTime(1985, 7, 16)
+                },
+                new Actor
+                {
+                    Name = "Giancarlo",
+                    LastName = "Esposito",
+                    BirthDate = new DateTime(1958, 4, 26)
+                },
+                new Actor
+                {
+                    Name = "Aidan",
+                    LastName = "Gillen",
+                    BirthDate = new DateTime(1968, 4, 24)
+                },
+                new Actor
+                {
+                    Name = "Barry",
+                    LastName = "Pepper",
+                    BirthDate = new DateTime(1970, 4, 4)
                 }
             };
 
@@ -452,6 +586,232 @@ public class Program
                         categories[0],
                         categories[1],
                         categories[2]
+                    ]
+                },
+                new Movie
+                {
+                    Title = "The Game",
+                    Duration = 129,
+                    Released = new DateTime(1997, 9, 12),
+                    Year = 1997,
+                    Country = "USA",
+                    Language = "English",
+                    Director = directors[0],
+                    Production = productions[0],
+                    Actors =
+                    [
+                        actors[0],
+                        actors[12]
+                    ],
+                    Categories =
+                    [
+                        categories[0],
+                        categories[2],
+                        categories[3]
+                    ]
+                },
+                new Movie
+                {
+                    Title = "The Social Network",
+                    Duration = 120,
+                    Released = new DateTime(2010, 10, 1),
+                    Year = 2010,
+                    Country = "USA",
+                    Language = "English",
+                    Director = directors[0],
+                    Production = productions[0],
+                    Actors =
+                    [
+                        actors[0],
+                        actors[13]
+                    ],
+                    Categories =
+                    [
+                        categories[0],
+                        categories[3],
+                        categories[4]
+                    ]
+                },
+                new Movie
+                {
+                    Title = "The Shawshank Redemption",
+                    Duration = 142,
+                    Released = new DateTime(1994, 10, 14),
+                    Year = 1994,
+                    Country = "USA",
+                    Language = "English",
+                    Director = directors[1],
+                    Production = productions[1],
+                    Actors =
+                    [
+                        actors[14],
+                        actors[15],
+                        actors[16]
+                    ],
+                    Categories =
+                    [
+                        categories[0],
+                        categories[1],
+                        categories[5]
+                    ]
+                },
+                new Movie
+                {
+                    Title = "Schindler's List",
+                    Duration = 195,
+                    Released = new DateTime(1994, 2, 4),
+                    Year = 1993,
+                    Country = "USA",
+                    Language = "English",
+                    Director = directors[1],
+                    Production = productions[1],
+                    Actors =
+                    [
+                        actors[17],
+                        actors[18],
+                        actors[19]
+                    ],
+                    Categories =
+                    [
+                        categories[0],
+                        categories[5],
+                        categories[10]
+                    ]
+                },
+                new Movie
+                {
+                    Title = "Saving Private Ryan",
+                    Duration = 169,
+                    Released = new DateTime(1998, 7, 24),
+                    Year = 1998,
+                    Country = "USA",
+                    Language = "English",
+                    Director = directors[1],
+                    Production = productions[1],
+                    Actors =
+                    [
+                        actors[17],
+                        actors[20],
+                        actors[21]
+                    ],
+                    Categories =
+                    [
+                        categories[0],
+                        categories[3],
+                        categories[10]
+                    ]
+                },
+                new Movie
+                {
+                    Title = "Catch Me If You Can",
+                    Duration = 141,
+                    Released = new DateTime(2003, 1, 31),
+                    Year = 2002,
+                    Country = "USA",
+                    Language = "English",
+                    Director = directors[1],
+                    Production = productions[1],
+                    Actors =
+                    [
+                        actors[17],
+                        actors[22]
+                    ],
+                    Categories =
+                    [
+                        categories[0],
+                        categories[3],
+                        categories[4]
+                    ]
+                },
+                new Movie
+                {
+                    Title = "The Terminal",
+                    Duration = 128,
+                    Released = new DateTime(2004, 7, 9),
+                    Year = 2004,
+                    Country = "USA",
+                    Language = "English",
+                    Director = directors[1],
+                    Production = productions[1],
+                    Actors =
+                    [
+                        actors[17],
+                        actors[23]
+                    ],
+                    Categories =
+                    [
+                        categories[0],
+                        categories[3],
+                        categories[4]
+                    ]
+                },
+                new Movie
+                {
+                    Title = "The Godfather",
+                    Duration = 175,
+                    Released = new DateTime(1972, 3, 24),
+                    Year = 1972,
+                    Country = "USA",
+                    Language = "English",
+                    Director = directors[2],
+                    Production = productions[2],
+                    Actors =
+                    [
+                        actors[24],
+                        actors[25],
+                        actors[26]
+                    ],
+                    Categories =
+                    [
+                        categories[0],
+                        categories[1],
+                        categories[10]
+                    ]
+                },
+                new Movie
+                {
+                    Title = "The Godfather: Part II",
+                    Duration = 202,
+                    Released = new DateTime(1974, 12, 20),
+                    Year = 1974,
+                    Country = "USA",
+                    Language = "English",
+                    Director = directors[2],
+                    Production = productions[2],
+                    Actors =
+                    [
+                        actors[24],
+                        actors[25],
+                        actors[27]
+                    ],
+                    Categories =
+                    [
+                        categories[0],
+                        categories[1],
+                        categories[10]
+                    ]
+                },
+                new Movie
+                {
+                    Title = "The Godfather: Part III",
+                    Duration = 162,
+                    Released = new DateTime(1991, 12, 25),
+                    Year = 1990,
+                    Country = "USA",
+                    Language = "English",
+                    Director = directors[2],
+                    Production = productions[2],
+                    Actors =
+                    [
+                        actors[24],
+                        actors[28],
+                        actors[29]
+                    ],
+                    Categories =
+                    [
+                        categories[0],
+                        categories[1],
+                        categories[10]
                     ]
                 }
             };
