@@ -1,4 +1,6 @@
 ﻿using FilmWebApi.Entities;
+using FilmWebApi.Repositories;
+using FilmWebApi.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace FilmWebApi;
@@ -16,10 +18,26 @@ public class Program
         {
             c.SwaggerDoc("v1", new() { Title = "FilmWebApi", Version = "v1" });
         });
-
-        builder.Services.AddDbContext<MovieContext>(options =>
+        builder.Services.AddSwaggerGen(c =>
         {
-            options.UseSqlServer(builder.Configuration.GetConnectionString("MovieContext"));
+            c.SwaggerDoc("v2", new() { Title = "FilmWebApi", Version = "v2" });
+        });
+
+        builder.Services.AddScoped<IActorService, ActorService>();
+        builder.Services.AddScoped<ICategoryService, CategoryService>();
+        builder.Services.AddScoped<IDirectorService, DirectorService>();
+        builder.Services.AddScoped<IMovieService, MovieService>();
+        builder.Services.AddScoped<IProductionService, ProductionService>();
+
+        builder.Services.AddScoped<ActorRepository>();
+        builder.Services.AddScoped<CategoryRepository>();
+        builder.Services.AddScoped<DirectorRepository>();
+        builder.Services.AddScoped<MovieRepository>();
+        builder.Services.AddScoped<ProductionRepository>();
+
+        builder.Services.AddDbContext<ApplicationContext>(options =>
+        {
+            options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationContext"));
         });
 
         var app = builder.Build();
@@ -48,7 +66,7 @@ public class Program
     {
         try
         {
-            var db = new MovieContext();
+            var db = new ApplicationContext();
             db.Database.EnsureDeleted();
             db.Database.EnsureCreated();
 

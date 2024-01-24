@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FilmWebApi;
 
-public class MovieContext : DbContext
+public class ApplicationContext : DbContext
 {
     public DbSet<Movie> Movies { get; set; }
     public DbSet<Actor> Actors { get; set; }

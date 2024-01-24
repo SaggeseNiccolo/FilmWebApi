@@ -1,13 +1,13 @@
 ﻿using FilmWebApi.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace FilmWebApi;
+namespace FilmWebApi.Repositories;
 
 public class MovieRepository
 {
-    private readonly MovieContext _context;
+    private readonly ApplicationContext _context;
 
-    public MovieRepository(MovieContext context)
+    public MovieRepository(ApplicationContext context)
     {
         _context = context;
     }
@@ -20,7 +20,7 @@ public class MovieRepository
     public async Task<Movie> GetMovie(int id)
     {
         var movie = await _context.Movies.FindAsync(id) ?? throw new Exception("Movie not found");
-        
+
         return movie;
     }
 
@@ -40,5 +40,12 @@ public class MovieRepository
             _context.Movies.Remove(movieToDelete);
             await _context.SaveChangesAsync();
         }
+    }
+
+    public async Task<Movie> UpdateMovie(Movie movie)
+    {
+        _context.Entry(movie).State = EntityState.Modified;
+        await _context.SaveChangesAsync();
+        return movie;
     }
 }
