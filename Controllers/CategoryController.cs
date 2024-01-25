@@ -22,7 +22,7 @@ public class CategoryController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Category>> GetCategory(int id)
+    public async Task<ActionResult<Category>> GetCategory(Guid id)
     {
         return await _categoryService.GetCategory(id);
     }
@@ -35,7 +35,7 @@ public class CategoryController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult> DeleteCategory(int id)
+    public async Task<ActionResult> DeleteCategory(Guid id)
     {
         await _categoryService.DeleteCategory(id);
         return NoContent();

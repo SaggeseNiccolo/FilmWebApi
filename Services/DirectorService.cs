@@ -6,9 +6,9 @@ namespace FilmWebApi.Services;
 public interface IDirectorService
 {
     Task<IEnumerable<Director>> GetDirectors();
-    Task<Director> GetDirector(int id);
+    Task<Director> GetDirector(Guid id);
     Task<Director> AddDirector(Director director);
-    Task DeleteDirector(int id);
+    Task DeleteDirector(Guid id);
     Task<Director> UpdateDirector(Director director);
 }
 
@@ -26,7 +26,7 @@ public class DirectorService : IDirectorService
         return await _directorRepository.GetDirectors();
     }
 
-    public async Task<Director> GetDirector(int id)
+    public async Task<Director> GetDirector(Guid id)
     {
         return await _directorRepository.GetDirector(id);
     }
@@ -36,7 +36,7 @@ public class DirectorService : IDirectorService
         return await _directorRepository.AddDirector(director);
     }
 
-    public async Task DeleteDirector(int id)
+    public async Task DeleteDirector(Guid id)
     {
         await _directorRepository.DeleteDirector(id);
     }

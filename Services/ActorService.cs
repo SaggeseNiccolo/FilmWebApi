@@ -6,9 +6,9 @@ namespace FilmWebApi.Services;
 public interface IActorService
 {
     Task<IEnumerable<Actor>> GetActors();
-    Task<Actor> GetActor(int id);
+    Task<Actor> GetActor(Guid id);
     Task<Actor> AddActor(Actor actor);
-    Task DeleteActor(int id);
+    Task DeleteActor(Guid id);
     Task<Actor> UpdateActor(Actor actor);
 }
 
@@ -26,7 +26,7 @@ public class ActorService : IActorService
         return await _actorRepository.GetActors();
     }
 
-    public async Task<Actor> GetActor(int id)
+    public async Task<Actor> GetActor(Guid id)
     {
         return await _actorRepository.GetActor(id);
     }
@@ -36,7 +36,7 @@ public class ActorService : IActorService
         return await _actorRepository.AddActor(actor);
     }
 
-    public async Task DeleteActor(int id)
+    public async Task DeleteActor(Guid id)
     {
         await _actorRepository.DeleteActor(id);
     }

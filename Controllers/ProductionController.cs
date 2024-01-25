@@ -22,7 +22,7 @@ public class ProductionController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Production>> GetProduction(int id)
+    public async Task<ActionResult<Production>> GetProduction(Guid id)
     {
         return await _productionService.GetProduction(id);
     }
@@ -35,7 +35,7 @@ public class ProductionController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult> DeleteProduction(int id)
+    public async Task<ActionResult> DeleteProduction(Guid id)
     {
         await _productionService.DeleteProduction(id);
         return NoContent();

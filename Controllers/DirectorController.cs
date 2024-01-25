@@ -22,7 +22,7 @@ public class DirectorController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Director>> GetDirector(int id)
+    public async Task<ActionResult<Director>> GetDirector(Guid id)
     {
         return await _directorService.GetDirector(id);
     }
@@ -35,7 +35,7 @@ public class DirectorController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult> DeleteDirector(int id)
+    public async Task<ActionResult> DeleteDirector(Guid id)
     {
         await _directorService.DeleteDirector(id);
         return NoContent();

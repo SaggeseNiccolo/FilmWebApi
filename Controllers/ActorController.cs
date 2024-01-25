@@ -22,7 +22,7 @@ public class ActorController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Actor>> GetActor(int id)
+    public async Task<ActionResult<Actor>> GetActor(Guid id)
     {
         return await _actorService.GetActor(id);
     }
@@ -35,7 +35,7 @@ public class ActorController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult> DeleteActor(int id)
+    public async Task<ActionResult> DeleteActor(Guid id)
     {
         await _actorService.DeleteActor(id);
         return NoContent();

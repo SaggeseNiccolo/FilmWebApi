@@ -6,9 +6,9 @@ namespace FilmWebApi.Services;
 public interface ICategoryService
 {
     Task<IEnumerable<Category>> GetCategories();
-    Task<Category> GetCategory(int id);
+    Task<Category> GetCategory(Guid id);
     Task<Category> AddCategory(Category category);
-    Task DeleteCategory(int id);
+    Task DeleteCategory(Guid id);
     Task<Category> UpdateCategory(Category category);
 }
 
@@ -26,7 +26,7 @@ public class CategoryService : ICategoryService
         return await _categoryRepository.GetCategories();
     }
 
-    public async Task<Category> GetCategory(int id)
+    public async Task<Category> GetCategory(Guid id)
     {
         return await _categoryRepository.GetCategory(id);
     }
@@ -36,7 +36,7 @@ public class CategoryService : ICategoryService
         return await _categoryRepository.AddCategory(category);
     }
 
-    public async Task DeleteCategory(int id)
+    public async Task DeleteCategory(Guid id)
     {
         await _categoryRepository.DeleteCategory(id);
     }

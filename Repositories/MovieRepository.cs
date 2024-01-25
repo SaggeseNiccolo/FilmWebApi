@@ -1,4 +1,5 @@
 ﻿using FilmWebApi.Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace FilmWebApi.Repositories;
@@ -17,7 +18,7 @@ public class MovieRepository
         return await _context.Movies.ToListAsync();
     }
 
-    public async Task<Movie> GetMovie(int id)
+    public async Task<Movie> GetMovie(Guid id)
     {
         var movie = await _context.Movies.FindAsync(id) ?? throw new Exception("Movie not found");
 
@@ -31,7 +32,7 @@ public class MovieRepository
         return movie;
     }
 
-    public async Task DeleteMovie(int id)
+    public async Task<IActionResult> DeleteMovie(Guid id)
     {
         var movieToDelete = await _context.Movies.FindAsync(id);
 
@@ -39,7 +40,10 @@ public class MovieRepository
         {
             _context.Movies.Remove(movieToDelete);
             await _context.SaveChangesAsync();
+            return new OkResult();
         }
+
+        return new NotFoundResult();
     }
 
     public async Task<Movie> UpdateMovie(Movie movie)

@@ -53,7 +53,7 @@ public class Program
 
         app.MapControllers();
 
-        Populate();
+        // Populate();
 
         app.Run();
     }

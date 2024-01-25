@@ -6,9 +6,9 @@ namespace FilmWebApi.Services;
 public interface IProductionService
 {
     Task<IEnumerable<Production>> GetProductions();
-    Task<Production> GetProduction(int id);
+    Task<Production> GetProduction(Guid id);
     Task<Production> AddProduction(Production production);
-    Task DeleteProduction(int id);
+    Task DeleteProduction(Guid id);
     Task<Production> UpdateProduction(Production production);
 }
 
@@ -26,7 +26,7 @@ public class ProductionService : IProductionService
         return await _productionRepository.GetProductions();
     }
 
-    public async Task<Production> GetProduction(int id)
+    public async Task<Production> GetProduction(Guid id)
     {
         return await _productionRepository.GetProduction(id);
     }
@@ -36,7 +36,7 @@ public class ProductionService : IProductionService
         return await _productionRepository.AddProduction(production);
     }
 
-    public async Task DeleteProduction(int id)
+    public async Task DeleteProduction(Guid id)
     {
         await _productionRepository.DeleteProduction(id);
     }

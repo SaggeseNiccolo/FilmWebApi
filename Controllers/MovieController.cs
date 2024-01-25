@@ -22,7 +22,7 @@ public class MovieController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Movie>> GetMovie(int id)
+    public async Task<ActionResult<Movie>> GetMovie(Guid id)
     {
         return await _movieService.GetMovie(id);
     }
@@ -35,7 +35,7 @@ public class MovieController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult> DeleteMovie(int id)
+    public async Task<ActionResult> DeleteMovie(Guid id)
     {
         await _movieService.DeleteMovie(id);
         return NoContent();

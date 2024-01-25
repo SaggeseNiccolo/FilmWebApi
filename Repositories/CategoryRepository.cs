@@ -1,4 +1,6 @@
 ﻿using FilmWebApi.Entities;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace FilmWebApi.Repositories;
@@ -17,7 +19,7 @@ public class CategoryRepository
         return await _context.Categories.ToListAsync();
     }
 
-    public async Task<Category> GetCategory(int id)
+    public async Task<Category> GetCategory(Guid id)
     {
         var category = await _context.Categories.FindAsync(id) ?? throw new Exception("Category not found");
 
@@ -31,7 +33,7 @@ public class CategoryRepository
         return category;
     }
 
-    public async Task DeleteCategory(int id)
+    public async Task<IActionResult> DeleteCategory(Guid id)
     {
         var categoryToDelete = await _context.Categories.FindAsync(id);
 
@@ -39,7 +41,10 @@ public class CategoryRepository
         {
             _context.Categories.Remove(categoryToDelete);
             await _context.SaveChangesAsync();
+            return new OkResult();
         }
+
+        return new NotFoundResult();
     }
 
     public async Task<Category> UpdateCategory(Category category)
