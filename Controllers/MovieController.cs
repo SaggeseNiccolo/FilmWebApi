@@ -1,11 +1,13 @@
 using FilmWebApi.Services;
 using FilmWebApi.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FilmWebApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+// [Authorize]
 public class MovieController : ControllerBase
 {
     private readonly IMovieService _movieService;

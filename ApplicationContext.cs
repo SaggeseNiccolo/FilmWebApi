@@ -1,9 +1,10 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using FilmWebApi.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace FilmWebApi;
 
-public class ApplicationContext : DbContext
+public class ApplicationContext : IdentityDbContext
 {
     public DbSet<Movie> Movies { get; set; }
     public DbSet<Actor> Actors { get; set; }

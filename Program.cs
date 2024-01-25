@@ -1,6 +1,7 @@
 ﻿using FilmWebApi.Entities;
 using FilmWebApi.Repositories;
 using FilmWebApi.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace FilmWebApi;
@@ -31,10 +32,21 @@ public class Program
         builder.Services.AddScoped<MovieRepository>();
         builder.Services.AddScoped<ProductionRepository>();
 
+        builder.Services.AddIdentityCore<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            .AddEntityFrameworkStores<ApplicationContext>();
+        
         builder.Services.AddDbContext<ApplicationContext>(options =>
         {
             options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationContext"));
         });
+
+        builder.Services.AddAuthentication(IdentityConstants.ApplicationScheme)
+            .AddCookie(IdentityConstants.ApplicationScheme, options =>
+            {
+                options.LoginPath = "/Account/Login";
+                options.LogoutPath = "/Account/Logout";
+                options.AccessDeniedPath = "/Account/AccessDenied";
+            });
 
         var app = builder.Build();
 
@@ -49,13 +61,17 @@ public class Program
 
         app.UseHttpsRedirection();
 
+        app.UseAuthentication();
         app.UseAuthorization();
 
         app.MapControllers();
 
-        // Populate();
+        // app.UseMiddleware<MobileUserAgentMiddleware>();
+                
+        Populate();
 
         app.Run();
+
     }
 
     private static void Populate()
