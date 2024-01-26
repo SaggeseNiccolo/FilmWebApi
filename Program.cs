@@ -34,7 +34,7 @@ public class Program
 
         builder.Services.AddIdentityCore<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
             .AddEntityFrameworkStores<ApplicationContext>();
-        
+
         builder.Services.AddDbContext<ApplicationContext>(options =>
         {
             options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationContext"));
@@ -67,11 +67,65 @@ public class Program
         app.MapControllers();
 
         // app.UseMiddleware<MobileUserAgentMiddleware>();
-                
-        Populate();
+
+        // Populate();
+
+        Linq();
 
         app.Run();
+    }
 
+    private static void Linq()
+    {
+        var db = new ApplicationContext();
+
+        var movies = db.Movies
+            .Include(m => m.Director)
+            .Include(m => m.Actors)
+            .Include(m => m.Categories)
+            .Include(m => m.Production)
+            .ToList();
+
+        Console.WriteLine($"Movies: {movies.Count}");
+
+        foreach (var movie in movies)
+        {
+            Console.WriteLine(movie.Title);
+            Console.Write(movie.Director.Name + " ");
+            Console.WriteLine(movie.Director.LastName);
+            Console.WriteLine(movie.Production.Name);
+            Console.Write("Actors: ");
+            Console.WriteLine(movie.Actors.Count);
+            foreach (var actor in movie.Actors)
+            {
+                Console.WriteLine("\t" + actor.Name + " " + actor.LastName);
+            }
+            Console.Write("Categories: ");
+            Console.WriteLine(movie.Categories.Count);
+            foreach (var category in movie.Categories)
+            {
+                Console.WriteLine("\t" + category.Name);
+            }
+            Console.WriteLine();
+        }
+
+        var actors = db.Actors
+            .Include(a => a.Movies)
+            .ToList();
+
+        Console.WriteLine($"Actors: {actors.Count}");
+
+        foreach (var actor in actors)
+        {
+            Console.WriteLine(actor.Name + " " + actor.LastName);
+            Console.Write("Movies: ");
+            Console.WriteLine(actor.Movies.Count);
+            foreach (var movie in actor.Movies)
+            {
+                Console.WriteLine("\t" + movie.Title);
+            }
+            Console.WriteLine();
+        }
     }
 
     private static void Populate()
